@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartPark | Stack Based Parking Management</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-square-parking"></i>
+            </div>
+
+            <div>
+                <h2>SmartPark</h2>
+                <span>Stack Management System</span>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#parking">Parking</a>
+            <a href="#operations">Operations</a>
+            <a href="#about">About Stack</a>
+        </nav>
+
+        <div class="status-online">
+            <span></span> System Online
+        </div>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <div class="tag">
+                <i class="fa-solid fa-layer-group"></i>
+                JAVA DATA STRUCTURE PROJECT
+            </div>
+
+            <h1>
+                Smart Parking
+                <span>Management</span>
+            </h1>
+
+            <p>
+                A smart parking simulation demonstrating the
+                <strong>Stack Data Structure</strong> using the
+                <strong>LIFO – Last In, First Out</strong> principle.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#parking" class="primary-btn">
+                    <i class="fa-solid fa-car"></i>
+                    Manage Parking
+                </a>
+
+                <a href="#about" class="secondary-btn">
+                    Learn Stack
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-car">
+            <i class="fa-solid fa-car-side"></i>
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats-section">
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-square-parking"></i>
+            </div>
+
+            <div>
+                <p>Total Slots</p>
+                <h2>5</h2>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-car"></i>
+            </div>
+
+            <div>
+                <p>Occupied</p>
+                <h2 id="occupied">0</h2>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-check-circle"></i>
+            </div>
+
+            <div>
+                <p>Available</p>
+                <h2 id="available">5</h2>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+                <p>Stack Size</p>
+                <h2 id="stackSize">0</h2>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PARKING MANAGEMENT -->
+
+    <section class="parking-section" id="parking">
+
+        <div class="section-heading">
+
+            <span>LIVE SIMULATION</span>
+
+            <h2>Parking Management</h2>
+
+            <p>
+                Add and remove vehicles using Stack operations.
+            </p>
+
+        </div>
+
+
+        <div class="parking-grid">
+
+
+            <!-- CONTROL PANEL -->
+
+            <div class="control-panel">
+
+                <div class="panel-title">
+
+                    <div class="small-icon">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+
+                    <div>
+                        <h3>Vehicle Entry</h3>
+                        <p>Park a new vehicle</p>
+                    </div>
+
+                </div>
+
+
+                <label>Vehicle Number</label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    <input
+                        type="text"
+                        id="vehicleNumber"
+                        placeholder="e.g. MH27AB1234"
+                        maxlength="12">
+
+                </div>
+
+
+                <button class="park-btn" onclick="parkVehicle()">
+
+                    <i class="fa-solid fa-arrow-down"></i>
+
+                    PUSH — Park Vehicle
+
+                </button>
+
+
+                <div class="operation-buttons">
+
+                    <button onclick="removeVehicle()" class="remove-btn">
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        POP — Remove
+
+                    </button>
+
+
+                    <button onclick="peekVehicle()" class="peek-btn">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        PEEK — View Top
+
+                    </button>
+
+                </div>
+
+
+                <button onclick="clearParking()" class="clear-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear Parking
+
+                </button>
+
+
+                <!-- STATUS -->
+
+                <div class="status-box" id="status">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>
+                        Parking is currently empty
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STACK VISUALIZATION -->
+
+            <div class="stack-panel">
+
+                <div class="stack-header">
+
+                    <div>
+
+                        <h3>
+                            <i class="fa-solid fa-layer-group"></i>
+                            Parking Stack
+                        </h3>
+
+                        <p>Last vehicle entered → First vehicle removed</p>
+
+                    </div>
+
+                    <div class="lifo-badge">
+                        LIFO
+                    </div>
+
+                </div>
+
+
+                <div class="parking-stack" id="parkingArea">
+
+                    <div class="empty-stack">
+
+                        <i class="fa-solid fa-car-side"></i>
+
+                        <h3>No vehicles parked</h3>
+
+                        <p>Park a vehicle to start the simulation</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stack-bottom">
+
+                    <i class="fa-solid fa-arrow-up"></i>
+
+                    EXIT / POP
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- OPERATION HISTORY -->
+
+    <section class="operations-section" id="operations">
+
+        <div class="section-heading">
+
+            <span>STACK OPERATIONS</span>
+
+            <h2>Operation History</h2>
+
+            <p>
+                Observe how every action changes the stack.
+            </p>
+
+        </div>
+
+
+        <div class="history-card">
+
+            <div class="history-header">
+
+                <h3>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Recent Operations
+                </h3>
+
+                <span id="operationCount">
+                    0 operations
+                </span>
+
+            </div>
+
+
+            <div id="historyList" class="history-list">
+
+                <div class="no-history">
+                    <i class="fa-solid fa-list"></i>
+                    <p>No operations performed yet</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- HOW STACK WORKS -->
+
+    <section class="about-section" id="about">
+
+        <div class="section-heading">
+
+            <span>DATA STRUCTURE</span>
+
+            <h2>How Stack Works</h2>
+
+            <p>
+                This project demonstrates the basic Stack operations.
+            </p>
+
+        </div>
+
+
+        <div class="operation-cards">
+
+
+            <div class="operation-card push-card">
+
+                <div class="operation-icon">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+
+                <span>PUSH</span>
+
+                <h3>Add Vehicle</h3>
+
+                <p>
+                    A new vehicle is added to the top of the parking stack.
+                </p>
+
+                <code>stack.push(vehicle)</code>
+
+            </div>
+
+
+            <div class="operation-card pop-card">
+
+                <div class="operation-icon">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </div>
+
+                <span>POP</span>
+
+                <h3>Remove Vehicle</h3>
+
+                <p>
+                    The vehicle at the top of the stack is removed first.
+                </p>
+
+                <code>stack.pop()</code>
+
+            </div>
+
+
+            <div class="operation-card peek-card">
+
+                <div class="operation-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <span>PEEK</span>
+
+                <h3>View Top Vehicle</h3>
+
+                <p>
+                    View the top vehicle without removing it from the stack.
+                </p>
+
+                <code>stack.peek()</code>
+
+            </div>
+
+
+            <div class="operation-card lifo-card">
+
+                <div class="operation-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <span>LIFO</span>
+
+                <h3>Last In First Out</h3>
+
+                <p>
+                    The last vehicle entering the stack is the first vehicle to leave.
+                </p>
+
+                <code>LIFO Principle</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- JAVA CODE -->
+
+    <section class="java-section">
+
+        <div class="java-container">
+
+            <div class="java-info">
+
+                <span>JAVA IMPLEMENTATION</span>
+
+                <h2>Stack Implementation in Java</h2>
+
+                <p>
+                    The actual data structure is implemented using
+                    Java's built-in <strong>Stack</strong> class.
+                </p>
+
+                <div class="java-points">
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Push vehicle
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Pop vehicle
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Peek top vehicle
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Display stack
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="code-window">
+
+                <div class="code-top">
+
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+
+                    <span class="filename">
+                        StackParking.java
+                    </span>
+
+                </div>
+
+
+                <pre><code>import java.util.Stack;
+
+public class StackParking {
+
+    public static void main(String[] args) {
+
+        Stack&lt;String&gt; parking = new Stack&lt;&gt;();
+
+        // PUSH
+        parking.push("MH27AB1234");
+        parking.push("MH27CD5678");
+        parking.push("MH27EF9012");
+
+        System.out.println("Parking: " + parking);
+
+        // PEEK
+        System.out.println(
+            "Top Vehicle: " + parking.peek()
+        );
+
+        // POP
+        System.out.println(
+            "Removed: " + parking.pop()
+        );
+
+        System.out.println(
+            "Updated Parking: " + parking
+        );
+    }
+}</code></pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <i class="fa-solid fa-square-parking"></i>
+
+            <div>
+                <strong>SmartPark</strong>
+                <small>Stack Based Parking System</small>
+            </div>
+
+        </div>
+
+
+        <p>
+            Data Structures Mini Project • Java • Stack • LIFO
+        </p>
+
+
+        <div class="footer-right">
+            <i class="fa-brands fa-java"></i>
+            <i class="fa-brands fa-html5"></i>
+            <i class="fa-brands fa-css3-alt"></i>
+            <i class="fa-brands fa-js"></i>
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
